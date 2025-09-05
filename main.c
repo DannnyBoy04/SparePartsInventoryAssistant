@@ -38,7 +38,7 @@ int main() {
         printf("\n%s: %d.", inventoryList[i], inventoryAmount[i]);
       }
     } else if (strcmp(userInput, "Help") == 0) {
-      printf("Help: Shows a list of commands.\nList_all_parts: Shows all part "
+      printf("Help: Shows a list of commands.\nList all parts: Shows all part "
              "names and how many are in stock.\nExit: Exits the program.");
     } else {
       printf("I don't have a part of the exact name '%s'.\n", userInput);
