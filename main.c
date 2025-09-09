@@ -1,26 +1,39 @@
+// main.c
+// A program to check if a user's part name input
+// matches with any of the part names in inventory.
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
+// The pointer array for the parts in inventory.
 const char *inventoryList[] = {"Resistor",   "Capacitor",   "Inductor",
                                "Diode",      "Transistor",  "Transformer",
                                "Switch",     "LED",         "Amplifier",
                                "PLC module", "Servo motor", "Cable"};
 
+// The integer array for how many there are of each part.
 const int inventoryAmount[] = {10, 8, 7, 4, 6, 1, 9, 11, 2, 1, 3, 20};
 
+// Defining some variables for later use in the main function.
 int listLength = sizeof(inventoryList) / sizeof(inventoryList[0]);
 char userInput[50];
 
-bool isPartInInventory(const char *arr[], int length, const char *value) {
+// Boolean function which returns true if some input string
+// is identical to any element in inventoryList.
+bool isPartInInventory(const char *arr[], int length, const char *string) {
   for (int i = 0; i < length; i++) {
-    if (strcmp(value, arr[i]) == 0) {
+    if (strcmp(string, arr[i]) == 0) {
       return true;
     }
   }
   return false;
 }
 
+// Asks the user which part they need and prompts them for input.
+// The input is checked against every element in inventoryList.
+// If isPartInInventory returns true, it says that the part is in stock.
+// Also allows the user to ask for what is in stock and to quit the program.
 int main() {
   printf("Hi! Welcome to the spare parts inventory.\n");
 
