@@ -16,6 +16,13 @@ const char *INVENTORY_LIST[] = {"Resistor",   "Capacitor",   "Inductor",
 // The integer array for how many there are of each part.
 const int INVENTORY_AMOUNT[] = {10, 8, 7, 4, 6, 1, 9, 11, 2, 1, 3, 20};
 
+// Defining some variables for later use.
+size_t listLength = _Countof(INVENTORY_LIST);
+char userInput[50];
+
+// Defining a partNumber variable to be used in isStringInArray later.
+int partNumber = 0;
+
 // Assistant messages:
 const char ASSISTANT_GREETING[] = "Hi! Welcome to the spare parts inventory.\n";
 const char ASSISTANT_QUESTION[] =
@@ -68,17 +75,10 @@ int longestStringInArray(const char *arr[], size_t length, int longestString) {
 int main() {
   printf("%s", ASSISTANT_GREETING);
 
-  // Defining some variables for later use.
-  size_t listLength = _Countof(INVENTORY_LIST);
-  char userInput[50];
-
   // Finding the part name with most letters
   // using the longestStringInArray function.
   int longestPartName =
       longestStringInArray(INVENTORY_LIST, listLength, longestPartName);
-
-  // Defining a partNumber variable to be used in isStringInArray later.
-  int partNumber = 0;
 
   // Main loop where the user enters a part name
   // and it's checked against the inventory list.
