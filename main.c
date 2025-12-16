@@ -18,7 +18,7 @@ const int INVENTORY_AMOUNT[] = {10, 8, 7, 4, 6, 1, 9, 11, 2, 1, 3, 20};
 
 // Defining some variables for later use.
 size_t listLength = _Countof(INVENTORY_LIST);
-char userInput[50];
+char playerCount[50];
 
 // Defining a partNumber variable to be used in isStringInArray later.
 int partNumber = 0;
@@ -86,22 +86,22 @@ int main() {
     printf("%s", ASSISTANT_QUESTION);
 
     // Prompts the user for inputting a part name.
-    fgets(userInput, sizeof(userInput), stdin);
+    fgets(playerCount, sizeof(playerCount), stdin);
     // Removes trailing newline if it is present
-    size_t inputLength = strlen(userInput);
-    if (inputLength > 0 && userInput[inputLength - 1] == '\n') {
-      userInput[inputLength - 1] = '\0';
+    size_t inputLength = strlen(playerCount);
+    if (inputLength > 0 && playerCount[inputLength - 1] == '\n') {
+      playerCount[inputLength - 1] = '\0';
     }
 
     // Checks if the user input is identical to any element in inventoryList.
-    if (isStringInArray(INVENTORY_LIST, listLength, userInput, &partNumber)) {
+    if (isStringInArray(INVENTORY_LIST, listLength, playerCount, &partNumber)) {
       printf(ASSISTANT_REPLY_POSITIVE, INVENTORY_LIST[partNumber]);
       // Checks if the user has entered 'Exit' and breaks the loop if so.
-    } else if (strcmp(userInput, EXIT_COMMAND) == 0) {
+    } else if (strcmp(playerCount, EXIT_COMMAND) == 0) {
       break;
       // Checks if the user has entered 'List all parts'
       // and uses a for loop to list them if so.
-    } else if (strcmp(userInput, LIST_COMMAND) == 0) {
+    } else if (strcmp(playerCount, LIST_COMMAND) == 0) {
       for (int i = 0; i < listLength; i++) {
         // Uses longestPartName and longestPartAmount to
         // dynamically format the output from 'List all parts'.
@@ -109,12 +109,12 @@ int main() {
                INVENTORY_AMOUNT[i]);
       }
       // Checks if the user has entered 'Help' and lists all commands if so.
-    } else if (strcmp(userInput, HELP_COMMAND) == 0) {
+    } else if (strcmp(playerCount, HELP_COMMAND) == 0) {
       printf("%s", HELP_TEXT);
       // If no command nor any part name has been entered
       // the following is printed.
     } else {
-      printf(ASSISTANT_REPLY_NEGATIVE, userInput);
+      printf(ASSISTANT_REPLY_NEGATIVE, playerCount);
       printf("%s", ASSISTANT_HELP);
     }
   }
